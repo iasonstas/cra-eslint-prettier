@@ -1,26 +1,36 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { useState } from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { Switch, Box, Container, FormGroup, FormControlLabel, CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { themeDark, themeLight } from "./theme";
+import Home from "./components/Home";
+import "@fontsource/montserrat";
 
-function App() {
+const App: React.FC = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const changeTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+  const graphQlClient = new QueryClient();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={graphQlClient}>
+      <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
+        <CssBaseline />
+        <Box> Lgo</Box>
+        <FormGroup>
+          <FormControlLabel
+            control={<Switch checked={isDarkTheme} onChange={changeTheme} />}
+            label="Dark Theme"
+          />
+        </FormGroup>
+        <Container>
+          <Home />
+        </Container>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
