@@ -1,10 +1,10 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm i`
+
+To install all the packages and dependencies
 
 ### `npm start`
 
@@ -14,11 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -27,20 +22,30 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Comments`
 
-### `npm run eject`
+If the user presses again the same line I closed the other description.
+The UX does not include the Loading page,the Description sector and the icons as svg's. I have proceeded with Material Icons for faster development.
+I also Implemented the paging with the Paginator of Material UI.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I used for the sortBy the default Select from MUI and implemented a dark view.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `React-router`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Because of the nature of the project which is single page and view I have not use React-router for different paths.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `React Query`
 
-## Learn More
+I have use react query for the fetching so it caches the 100 repos and the makes the application feel faster and more responsive and for the Loading and Error handling. React Query provides a robust error handling mechanism that allows you to handle errors gracefully and display error messages to the user.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `SOLID principles`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Single Responsibility Principle (SRP): Components in React should have a single responsibility.
+
+Open/Closed Principle (OCP): Components in React should be open for extension but closed for modification.
+
+Liskov Substitution Principle (LSP): React components should be able to be substituted by other components that inherit from them.
+
+Interface Segregation Principle (ISP): React components should have small, focused interfaces.
+
+Dependency Inversion Principle (DIP): React components should depend on abstractions, not on concrete implementations.

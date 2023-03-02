@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   FormControl,
   InputLabel,
   List,
   MenuItem,
+  Pagination,
   Select,
   SelectChangeEvent,
   Typography,
@@ -18,32 +18,34 @@ import SearchInput from "./SearchInput";
 import { Repository } from "../models";
 import useFetchRepos from "../hooks/useFetchRepos";
 import RepoItem from "./RepoItem";
+import LoadingScreen from "./LoadingScreen";
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredData, setFilteredData] = useState<Repository[]>([]);
+
   const [resultsPerPage, setResultsPerPage] = useState<string>("8");
   const [sortBy, setSortBy] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<Repository[]>([]);
-  console.log("🌊 > file: Home.tsx:17 > sortedData:", filteredData);
-  const { data, isLoading, isError } = useFetchRepos();
   const [selected, setSelected] = useState<string>("");
+
+  const { data, isLoading, isError } = useFetchRepos();
 
   useEffect(() => {
     if (data) setFilteredData(data);
   }, [data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   if (isError) {
-    return <div>Error 404</div>;
+    return <Box>Error 404</Box>;
   }
 
   // Calculate pagination variables
   const lastIndex = currentPage * parseInt(resultsPerPage, 10);
   const firstIndex = lastIndex - parseInt(resultsPerPage, 10);
-  console.log("🌊 > file: Home.tsx:45 > lastIndex:", firstIndex, lastIndex);
+  const pageCount = data && Math.floor(data.length / parseInt(resultsPerPage, 10));
 
   const sortedDataByType = (event: SelectChangeEvent) => {
     const { value } = event.target;
@@ -66,17 +68,28 @@ const Home: React.FC = () => {
     }
   };
 
+  const searchFilter = (event: SelectChangeEvent) => {
+    if (data) {
+      const sorted = data.filter((repo: Repository) =>
+        repo.name.toLocaleLowerCase().includes(event.target.value)
+      );
+      if (sorted.length > 0) {
+        setFilteredData(sorted);
+      } else {
+        setFilteredData([]);
+      }
+    }
+  };
+
   const currentRepos = filteredData?.slice(firstIndex, lastIndex);
 
   const handleSelect = (event: SelectChangeEvent) => setResultsPerPage(event.target.value);
-  const handlePage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handlePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
   };
   return (
     <Box p={5}>
-      <SearchInput icon={<IconSearch />} width={515} height={48} />
+      <SearchInput icon={<IconSearch />} width={515} height={48} searchFilter={searchFilter} />
       <Box
         sx={{
           display: "flex",
@@ -98,20 +111,19 @@ const Home: React.FC = () => {
           Repository results
         </Typography>
         <Box sx={{ display: "flex" }}>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
             <InputLabel id="sortby-label">Sort By</InputLabel>
             <Select
               labelId="sortby-label"
               label="Sort By"
               value={sortBy}
               onChange={sortedDataByType}
-              sx={{ marginRight: 4, width: 100 }}
+              sx={{ marginRight: 4, minWidth: 100 }}
             >
-              <MenuItem value="name">name</MenuItem>
-              <MenuItem value="rating">rating</MenuItem>
+              <MenuItem value="name">Name</MenuItem>
+              <MenuItem value="rating">Stars count</MenuItem>
             </Select>
           </FormControl>
-
           <Typography
             sx={{
               fontFamily: "Montserrat",
@@ -119,7 +131,6 @@ const Home: React.FC = () => {
               alignSelf: "center",
               fontSize: "13px",
               fontWeight: 500,
-
               color: "#3B5998 ",
             }}
           >
@@ -138,7 +149,6 @@ const Home: React.FC = () => {
           </FormControl>
         </Box>
       </Box>
-
       <List
         sx={{
           minHeight: 400,
@@ -152,10 +162,15 @@ const Home: React.FC = () => {
           <RepoItem key={repo.id} repo={repo} selected={selected} setSelected={setSelected} />
         ))}
       </List>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button onClick={handlePage}>Prev</Button>
-
-        <Button onClick={() => setCurrentPage(currentPage + 1)}>Next</Button>
+      <Box sx={{ display: "flex", margin: 1, justifyContent: "flex-end" }}>
+        <Pagination
+          count={pageCount}
+          color="primary"
+          shape="rounded"
+          variant="outlined"
+          page={currentPage}
+          onChange={handlePage}
+        />
       </Box>
     </Box>
   );

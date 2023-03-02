@@ -39,15 +39,12 @@ const RepoItem = ({
               height: "100%",
               border: "1px solid #3B5998",
               opacity: 0.26,
-
               paddingY: "12px",
               borderRadius: "2px",
               backgroundColor: "#A2B0CE",
             }}
           />
-          <Box sx={{ minWidth: 200, fontFamily: "Montserrat Regular", fontSize: "16px" }}>
-            #{name}
-          </Box>
+          <Box sx={{ width: 200, fontFamily: "Montserrat Regular", fontSize: "16px" }}>#{name}</Box>
           <Box
             sx={{
               width: 200,

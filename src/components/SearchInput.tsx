@@ -1,12 +1,14 @@
-import { Box, InputBase } from "@mui/material";
+import { Box, InputBase, SelectChangeEvent } from "@mui/material";
+import { Repository } from "../models";
 
 type Props = {
   icon: React.ReactNode;
   height: number;
   width: number;
+  searchFilter: (event: any) => void;
 };
 
-const SearchInput = ({ icon, height, width }: Props) => {
+const SearchInput = ({ icon, height, width, searchFilter }: Props) => {
   return (
     <Box
       sx={{
@@ -24,6 +26,7 @@ const SearchInput = ({ icon, height, width }: Props) => {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search"
+        onChange={searchFilter}
         inputProps={{ "aria-label": "Search" }}
       />
       {icon}

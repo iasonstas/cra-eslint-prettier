@@ -15,8 +15,10 @@ const RatingLabel = ({ label, icon, height, width }: Props) => {
         minWidth: width,
         border: "1px solid #3B5998",
         borderRadius: 10,
-        backgroundColor: "white",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "light" ? "white" : theme.palette.background.default,
         zIndex: 99,
+
         display: "flex",
         paddingLeft: "3px",
         paddingRight: "21px",
