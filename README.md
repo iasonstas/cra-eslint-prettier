@@ -24,6 +24,8 @@ Your app is ready to be deployed!
 
 ### `Comments`
 
+The loading-fetching is taking place on the component-Home and the I let the top "navigation area" exist when the app is in loading phase
+I have imported the font with the MUI way.
 If the user presses again the same line I closed the other description.
 The UX does not include the Loading page,the Description sector and the icons as svg's. I have proceeded with Material Icons for faster development.
 I also Implemented the paging with the Paginator of Material UI.

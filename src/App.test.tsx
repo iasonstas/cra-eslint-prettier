@@ -1,9 +1,20 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+  test("renders App component without errors", () => {
+    render(<App />);
+  });
+
+  test("renders Navbar", () => {
+    render(<App />);
+    const navbarElement = screen.getByTestId("navbar");
+    expect(navbarElement).toBeInTheDocument();
+  });
+
+  test("renders Home", () => {
+    const { getByTestId } = render(<App />);
+    const home = getByTestId("home");
+    expect(home).toBeInTheDocument();
+  });
 });

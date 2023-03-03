@@ -44,10 +44,12 @@ const RepoItem = ({
               backgroundColor: "#A2B0CE",
             }}
           />
-          <Box sx={{ width: 200, fontFamily: "Montserrat Regular", fontSize: "16px" }}>#{name}</Box>
+          <Box sx={{ minWidth: 220, fontFamily: "Montserrat Regular", fontSize: "16px" }}>
+            #{name}
+          </Box>
           <Box
             sx={{
-              width: 200,
+              minWidth: 220,
               display: "flex",
               justifyContent: "flex-start",
             }}

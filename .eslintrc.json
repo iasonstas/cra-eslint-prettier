@@ -31,6 +31,8 @@
     " @typescript-eslint/no-unnecessary-type-assertion": 0,
     "no-unsafe-optional-chaining": 0,
     "react/jsx-props-no-spreading": 0,
-    "no-debugger": "warn"
+    "no-debugger": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/unbound-method": 0
   }
 }

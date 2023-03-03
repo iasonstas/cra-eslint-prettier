@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
-import FbSvg from "../assets/FbSvg";
+import FbSvg from "../../assets/FbSvg";
 
 const FbRepositoryLabel = ({ small }: { small: boolean }) => {
   return (
@@ -12,7 +11,7 @@ const FbRepositoryLabel = ({ small }: { small: boolean }) => {
           fontSize: small ? "20px" : "40px",
           fontWeight: 700,
           ml: small ? 0.5 : 2,
-          fontFamily: "Montserrat",
+
           color: "#3B5998 ",
         }}
       >

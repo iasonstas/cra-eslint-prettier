@@ -2,10 +2,10 @@ interface Props extends React.InputHTMLAttributes<SVGSVGElement> {
   small: boolean;
 }
 
-const FbSvg = (props: Props) => {
-  const { small } = props;
+const FbSvg = ({ small }: Props, props: Props) => {
   return (
     <svg
+      data-testid="fb-svg"
       xmlns="http://www.w3.org/2000/svg"
       width={small ? 30 : 60}
       height={small ? 30 : 60}

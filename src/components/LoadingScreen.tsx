@@ -1,7 +1,7 @@
 import { CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
-import FbRepositoryLabel from "./FbRepositoryLabel";
+import FbRepositoryLabel from "./FbRepositoryLabel/FbRepositoryLabel";
 
 const LoadingScreen = () => {
   return (
@@ -24,7 +24,6 @@ const LoadingScreen = () => {
             fontSize: "30px",
             fontWeight: 500,
             ml: 2,
-            fontFamily: "Montserrat",
             color: "#3B5998 ",
           }}
         >

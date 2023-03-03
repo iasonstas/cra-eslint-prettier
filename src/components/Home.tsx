@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -12,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
+import { Container } from "@mui/system";
 import { IconSearch } from "../assets/icons";
 import SearchInput from "./SearchInput";
 
@@ -73,11 +73,8 @@ const Home: React.FC = () => {
       const sorted = data.filter((repo: Repository) =>
         repo.name.toLocaleLowerCase().includes(event.target.value)
       );
-      if (sorted.length > 0) {
-        setFilteredData(sorted);
-      } else {
-        setFilteredData([]);
-      }
+      if (sorted.length > 0) setFilteredData(sorted);
+      else setFilteredData([]);
     }
   };
 
@@ -88,91 +85,91 @@ const Home: React.FC = () => {
     setCurrentPage(value);
   };
   return (
-    <Box p={5}>
-      <SearchInput icon={<IconSearch />} width={515} height={48} searchFilter={searchFilter} />
-      <Box
-        sx={{
-          display: "flex",
-          marginTop: 7,
-          marginBottom: 2,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Typography
+    <Container>
+      <Box m={5}>
+        <SearchInput icon={<IconSearch />} width={515} height={48} searchFilter={searchFilter} />
+        <Box
           sx={{
-            fontFamily: "Montserrat",
-            lineHeight: "27px",
-            fontSize: "22px",
-            fontWeight: 500,
-            color: "#3B5998 ",
+            display: "flex",
+            marginTop: 7,
+            marginBottom: 2,
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          Repository results
-        </Typography>
-        <Box sx={{ display: "flex" }}>
-          <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
-            <InputLabel id="sortby-label">Sort By</InputLabel>
-            <Select
-              labelId="sortby-label"
-              label="Sort By"
-              value={sortBy}
-              onChange={sortedDataByType}
-              sx={{ marginRight: 4, minWidth: 100 }}
-            >
-              <MenuItem value="name">Name</MenuItem>
-              <MenuItem value="rating">Stars count</MenuItem>
-            </Select>
-          </FormControl>
           <Typography
             sx={{
-              fontFamily: "Montserrat",
               lineHeight: "27px",
-              alignSelf: "center",
-              fontSize: "13px",
+              fontSize: "22px",
               fontWeight: 500,
               color: "#3B5998 ",
             }}
           >
-            results per page
+            Repository results
           </Typography>
-          <FormControl sx={{ m: 1, minWidth: 80 }} size="small">
-            <Select
-              sx={{ marginRight: 4 }}
-              labelId="resultsPerPage-label"
-              value={resultsPerPage}
-              onChange={handleSelect}
+          <Box sx={{ display: "flex" }}>
+            <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
+              <InputLabel id="sortby-label">Sort By</InputLabel>
+              <Select
+                labelId="sortby-label"
+                label="Sort By"
+                value={sortBy}
+                onChange={sortedDataByType}
+                sx={{ marginRight: 4, minWidth: 100 }}
+              >
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="rating">Stars count</MenuItem>
+              </Select>
+            </FormControl>
+            <Typography
+              sx={{
+                lineHeight: "27px",
+                alignSelf: "center",
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#3B5998 ",
+              }}
             >
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={16}>16</MenuItem>
-            </Select>
-          </FormControl>
+              results per page
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 80 }} size="small">
+              <Select
+                sx={{ marginRight: 4 }}
+                labelId="resultsPerPage-label"
+                value={resultsPerPage}
+                onChange={handleSelect}
+              >
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={16}>16</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Box>
+        <List
+          sx={{
+            minHeight: 400,
+            minWidth: 768,
+            padding: 1,
+            border: "1px solid #3B5998",
+            borderRadius: 2,
+          }}
+        >
+          {currentRepos?.map((repo: Repository) => (
+            <RepoItem key={repo.id} repo={repo} selected={selected} setSelected={setSelected} />
+          ))}
+        </List>
+        <Box sx={{ display: "flex", margin: 1, justifyContent: "flex-end" }}>
+          <Pagination
+            count={pageCount}
+            color="primary"
+            shape="rounded"
+            variant="outlined"
+            page={currentPage}
+            onChange={handlePage}
+          />
         </Box>
       </Box>
-      <List
-        sx={{
-          minHeight: 400,
-          minWidth: 768,
-          padding: 1,
-          border: "1px solid #3B5998",
-          borderRadius: 2,
-        }}
-      >
-        {currentRepos?.map((repo: Repository) => (
-          <RepoItem key={repo.id} repo={repo} selected={selected} setSelected={setSelected} />
-        ))}
-      </List>
-      <Box sx={{ display: "flex", margin: 1, justifyContent: "flex-end" }}>
-        <Pagination
-          count={pageCount}
-          color="primary"
-          shape="rounded"
-          variant="outlined"
-          page={currentPage}
-          onChange={handlePage}
-        />
-      </Box>
-    </Box>
+    </Container>
   );
 };
 
