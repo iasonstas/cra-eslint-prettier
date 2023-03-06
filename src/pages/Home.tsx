@@ -2,12 +2,13 @@ import React, { useContext, useState } from "react";
 import { Box, List, Pagination, SelectChangeEvent } from "@mui/material";
 
 import { Container } from "@mui/system";
-import { IconSearch } from "../assets/icons";
+
 import SearchInput from "../components/SearchInput";
 import { Repository } from "../models";
 import RepoItem from "../components/RepoItem";
 import { RepoContext } from "../context/RepoContext";
 import SortBy from "../components/RepoOptions";
+import IconSearch from "../assets/SearchIcon";
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);

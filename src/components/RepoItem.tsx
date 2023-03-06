@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import { Box, ListItem, Typography } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { IconStar } from "../assets/icons";
 
 import RatingLabel from "./RatingLabel";
 import { Repository } from "../models";
+import IconStar from "../assets/IconStar";
 
 const RepoItem = ({
   repo,

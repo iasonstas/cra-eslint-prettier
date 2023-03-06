@@ -18,7 +18,7 @@ const Navbar = ({ isDarkTheme, setIsDarkTheme }: Props) => {
         <FormGroup>
           <FormControlLabel
             control={<Switch checked={isDarkTheme} onChange={() => setIsDarkTheme(!isDarkTheme)} />}
-            label={isDarkTheme ? <Brightness7Icon /> : <Brightness4Icon />}
+            label={isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon color="action" />}
           />
         </FormGroup>
       </Box>
