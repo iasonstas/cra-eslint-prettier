@@ -8,6 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import ErrorScreen from "../components/ErrorScreen";
 import LoadingScreen from "../components/LoadingScreen";
 
 import { Repository } from "../models";
@@ -51,9 +52,8 @@ export default function RepoProvider({ children }: { children: React.ReactNode }
       } catch (error) {
         setIsError(true);
       } finally {
-        console.log("test");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -71,7 +71,7 @@ export default function RepoProvider({ children }: { children: React.ReactNode }
   }
 
   if (isError) {
-    return <Box>Error 404</Box>;
+    return <ErrorScreen />;
   }
   return <RepoContext.Provider value={contextValue}>{children}</RepoContext.Provider>;
 }
