@@ -24,13 +24,23 @@ Your app is ready to be deployed!
 
 ### `Comments`
 
-The loading-fetching is taking place on the component-Home and the I let the top "navigation area" exist when the app is in loading phase
-I have imported the font with the MUI way.
+The loading-fetching is taking place on the component-Home and the I let the top "navigation area" exist when the app is in loading phase.
+
+Imported the font with the MUI way.
+
 If the user presses again the same line I closed the other description.
+
 The UX does not include the Loading page,the Description sector and the icons as svg's. I have proceeded with Material Icons for faster development.
+
 I also Implemented the paging with the Paginator of Material UI.
 
-I used for the sortBy the default Select from MUI and implemented a dark view.
+For the SortBy the default Select from MUI is used
+
+Implemented a dark view.
+
+SortBy field animation for cleaner UX feel.
+
+React Context state management with double filtering mechanism for faster and
 
 ### `React-router`
 

@@ -1,14 +1,25 @@
-import { Box, InputBase, SelectChangeEvent } from "@mui/material";
+import { Box, InputBase, InputBaseProps } from "@mui/material";
+import { useContext } from "react";
+import { RepoContext } from "../context/RepoContext";
 import { Repository } from "../models";
 
-type Props = {
+interface Props extends InputBaseProps {
   icon: React.ReactNode;
   height: number;
   width: number;
-  searchFilter: (event: any) => void;
-};
+}
+const SearchInput = ({ icon, height, width, ...props }: Props) => {
+  const { repositories, setFilteredRepositories } = useContext(RepoContext);
 
-const SearchInput = ({ icon, height, width, searchFilter }: Props) => {
+  const searchFilter = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (repositories && setFilteredRepositories) {
+      const sorted = repositories.filter((repo: Repository) =>
+        repo.name.toLocaleLowerCase().includes(event.target.value)
+      );
+      if (sorted.length > 0) setFilteredRepositories(sorted);
+      else setFilteredRepositories([]);
+    }
+  };
   return (
     <Box
       sx={{
@@ -28,6 +39,7 @@ const SearchInput = ({ icon, height, width, searchFilter }: Props) => {
         placeholder="Search"
         onChange={searchFilter}
         inputProps={{ "aria-label": "Search" }}
+        {...props}
       />
       {icon}
     </Box>

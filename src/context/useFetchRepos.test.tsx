@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, getAllRepos } from "./useFetchRepos";
+import { BASE_URL, fetchRepositories } from "./RepoContext";
 
 describe("fetch Repositories", () => {
   const mockedResponse = [
@@ -7,9 +7,9 @@ describe("fetch Repositories", () => {
     { id: 2, name: "repository 2" },
   ];
 
-  test("useFetchRepos fetches and returns the repositories data", () => {
+  test("useFetchRepos fetches and returns the repositories data", async () => {
     jest.spyOn(axios, "get").mockResolvedValueOnce(mockedResponse);
-    const result = getAllRepos();
+    const result = await fetchRepositories();
 
     expect(axios.get).toHaveBeenCalledWith(BASE_URL);
 

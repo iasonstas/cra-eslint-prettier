@@ -17,5 +17,12 @@
     "jsx": "react-jsx"
   },
 
-  "include": ["src/**/*", "./jest.config.js", ".env", "./react-app-env.d.ts"]
+  "include": [
+    "src/**/*",
+    "./jest.config.js",
+    ".env",
+    "./react-app-env.d.ts",
+    "src/components/RepoOptions.tsx",
+    "src/pages/Home.tsx"
+  ]
 }
