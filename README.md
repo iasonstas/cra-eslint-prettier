@@ -22,7 +22,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-### `Comments`
+### `Comments on the project`
+
+Our application is built with TypeScript and adheres to the Airbnb style guide through the use of ESLint. We also use Prettier to ensure consistent formatting throughout the codebase. As a best practice, we have implemented a Husky pre-commit action to automate code quality checks before any changes are committed to version control.
 
 The loading-fetching is taking place on the component-Home and the I let the top "navigation area" exist when the app is in loading phase.
 
@@ -32,7 +34,7 @@ If the user presses again the same line I closed the other description.
 
 The UX does not include the Loading page,the Description sector and the icons as svg's. I have proceeded with Material Icons for faster development.
 
-I also Implemented the paging with the Paginator of Material UI.
+Implemented the paging with the Paginator of Material UI.
 
 For the SortBy the default Select from MUI is used
 
@@ -40,7 +42,7 @@ Implemented a dark view.
 
 SortBy field animation for cleaner UX feel.
 
-React Context state management with double filtering mechanism for faster and
+Utilized React Context for state management in our application, which features a double filtering mechanism to efficiently share state between a limited number of components. However, as the application grows in size and complexity, we recognize that more advanced state management solutions like React Query or Redux Toolkit may be better suited to handle the more complex state management needs of a larger application.
 
 ### `React-router`
 
@@ -59,3 +61,7 @@ Liskov Substitution Principle (LSP): React components should be able to be subst
 Interface Segregation Principle (ISP): React components should have small, focused interfaces.
 
 Dependency Inversion Principle (DIP): React components should depend on abstractions, not on concrete implementations.
+
+# `Tests`
+
+Few tests where implemented because of time constrictions I had with the use of React-testing-library and Jest.

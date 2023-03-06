@@ -1,6 +1,8 @@
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
 import FbRepositoryLabel from "./FbRepositoryLabel/FbRepositoryLabel";
 
 type Props = {
@@ -16,7 +18,7 @@ const Navbar = ({ isDarkTheme, setIsDarkTheme }: Props) => {
         <FormGroup>
           <FormControlLabel
             control={<Switch checked={isDarkTheme} onChange={() => setIsDarkTheme(!isDarkTheme)} />}
-            label="Dark Theme"
+            label={isDarkTheme ? <Brightness7Icon /> : <Brightness4Icon />}
           />
         </FormGroup>
       </Box>
