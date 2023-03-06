@@ -44,13 +44,11 @@ React Context state management with double filtering mechanism for faster and
 
 ### `React-router`
 
-Because of the nature of the project which is single page and view I have not use React-router for different paths.
-
-### `React Query`
-
-I have use react query for the fetching so it caches the 100 repos and the makes the application feel faster and more responsive and for the Loading and Error handling. React Query provides a robust error handling mechanism that allows you to handle errors gracefully and display error messages to the user.
+Because of the nature of the project which is single page and view I have not used React-router for different paths.
 
 ### `SOLID principles`
+
+Throughtout the project there have been used the SOLID principles.
 
 Single Responsibility Principle (SRP): Components in React should have a single responsibility.
 

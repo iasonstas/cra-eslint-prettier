@@ -17,9 +17,11 @@ const App: React.FC = () => {
       <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
         <CssBaseline />
         <Navbar isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
-        <RepoProvider>
-          <Home />
-        </RepoProvider>
+        <div data-testid="home">
+          <RepoProvider>
+            <Home />
+          </RepoProvider>
+        </div>
       </ThemeProvider>
     </QueryClientProvider>
   );
